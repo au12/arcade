@@ -328,12 +328,12 @@ export function Play({ id }) {
       {!kiosk.value && !menu && (
         <button
           type="button"
-          class={`play__hud ${hud ? 'is-awake' : ''}`}
+          class={`play__hud play__hud--${game.hud || 'top'} ${hud ? 'is-awake' : ''}`}
           onClick={openMenu}
           onPointerEnter={() => setHud(true)}
           aria-label="Arcade menu"
         >
-          {me.value ? <Critter player={me.value} size={26} /> : <span class="play__guest">Guest</span>}
+          {me.value ? <Critter player={me.value} size={20} frame={false} /> : <span class="play__guest">Guest</span>}
           <span class="play__hud-icon" aria-hidden="true">
             <i />
             <i />

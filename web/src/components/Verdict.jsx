@@ -14,11 +14,55 @@ import { me } from '../state.js';
 export const verdicts = signal([]);
 let vid = 0;
 
+// A game may report several boards at once (a puzzle's score, the running
+// total, puzzles solved): reports that arrive close together become one verdict.
+const bursts = new Map();
+
 /** Queues the arcade's verdict on a submission (the server's answer). */
-export function showVerdict(game, kind, res, extra = {}) {
+export function showVerdict(game, kind, res) {
   if (!res) return;
-  const item = { id: ++vid, game, kind, res, ...extra };
-  verdicts.value = [...verdicts.value, item];
+  const b = bursts.get(game.id) || { game, parts: [] };
+  b.parts.push({ kind, res });
+  clearTimeout(b.timer);
+  b.timer = setTimeout(() => {
+    bursts.delete(game.id);
+    verdicts.value = [...verdicts.value, merge(b.game, b.parts)];
+  }, 700);
+  bursts.set(game.id, b);
+}
+
+/** The most notable part leads; tickets and achievements add up. */
+function merge(game, parts) {
+  const shown = (p) => game.boards?.find((x) => x.id === p.res.board);
+  const primary = (p) => Boolean(shown(p)?.primary);
+  const rank = (p) => {
+    const r = p.res;
+    if (p.kind === 'score' && r.record && shown(p)) return primary(p) ? 0 : 1;
+    if (p.kind === 'score' && r.personalBest && shown(p)) return primary(p) ? 2 : 3;
+    if (p.kind === 'result' && r.outcome === 'win') return 4;
+    if (p.kind === 'result') return 5;
+    if (p.kind === 'score' && shown(p)) return primary(p) ? 6 : 7;
+    return 9;
+  };
+  const lead = [...parts].sort((a, b) => rank(a) - rank(b))[0];
+  const breakdown = new Map();
+  const achievements = new Map();
+  let balance = 0;
+  for (const p of parts) {
+    for (const x of p.res.tickets?.breakdown || []) breakdown.set(x.label, (breakdown.get(x.label) || 0) + x.n);
+    for (const a of p.res.achievements || []) achievements.set(a.id, a);
+    if (p.res.tickets) balance = p.res.tickets.balance;
+  }
+  const items = [...breakdown].map(([label, n]) => ({ label, n }));
+  const res = {
+    ...lead.res,
+    tickets: { earned: items.reduce((t, x) => t + x.n, 0), breakdown: items, balance },
+    achievements: [...achievements.values()],
+    player: parts[parts.length - 1].res.player || lead.res.player,
+  };
+  // A burst led by an ordinary progress update (no best, no record) just shows the tickets.
+  res.quiet = parts.length > 1 && rank(lead) >= 6;
+  return { id: ++vid, game, kind: lead.kind === 'achieve' ? 'score' : lead.kind, res };
 }
 
 function dismiss(id) {
@@ -40,8 +84,10 @@ function Verdict({ v }) {
   const earned = res.tickets?.earned || 0;
   const achievements = res.achievements || [];
   const player = res.player || me.value;
-  const value = kind === 'score' ? formatValue(res.value, board?.format) : null;
-  const headline = isRecord
+  const value = kind === 'score' && !res.quiet ? formatValue(res.value, board?.format) : null;
+  const headline = res.quiet
+    ? null
+    : isRecord
     ? 'New record'
     : isPb
       ? 'Personal best'

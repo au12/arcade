@@ -306,7 +306,8 @@ export class Arcade {
       const breakdown = [];
       for (const r of game.tickets.filter((t) => t.outcome === outcome && metaMatches(metaObj, t.filter))) {
         const n = Math.max(0, Math.min(500, Number(r.amount) || 0));
-        if (n) breakdown.push({ label: r.filter ? 'Bonus' : outcome === 'win' ? 'Win' : 'Good game', n });
+        const label = typeof r.label === 'string' && r.label.trim() ? r.label.trim().slice(0, 30) : r.filter ? 'Bonus' : outcome === 'win' ? 'Win' : 'Good game';
+        if (n) breakdown.push({ label, n });
       }
       const base = breakdown.reduce((s, b) => s + b.n, 0);
       if (base && this.gameOfDay(now) === gameId) breakdown.push({ label: 'Game of the day', n: base });

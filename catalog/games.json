@@ -127,6 +127,7 @@
       "art": "art/marbledrop.svg",
       "icon": "icons/marbledrop.png",
       "orientation": "landscape",
+      "hud": "bottom",
       "boards": [
         { "id": "total", "name": "Game Score", "kind": "best", "order": "desc", "format": "int", "primary": true },
         { "id": "solved", "name": "Puzzles Solved", "kind": "best", "order": "desc", "format": "int", "of": 45 }
@@ -200,13 +201,17 @@
       "icon": "icons/swipe.png",
       "orientation": "any",
       "boards": [
-        { "id": "wins", "name": "Games Won", "kind": "wins", "primary": true },
+        { "id": "wins", "name": "Games Won", "kind": "wins", "primary": true, "filter": { "match": false } },
         { "id": "matches", "name": "Matches Won", "kind": "wins", "filter": { "match": true } }
       ],
-      "tickets": [{ "outcome": "win", "amount": 15 }, { "outcome": "loss", "amount": 3 }, { "outcome": "win", "filter": { "match": true }, "amount": 25 }],
+      "tickets": [
+        { "outcome": "win", "filter": { "match": false }, "amount": 15, "label": "Out first" },
+        { "outcome": "loss", "filter": { "match": false }, "amount": 3, "label": "Good game" },
+        { "outcome": "win", "filter": { "match": true }, "amount": 25, "label": "Match won" }
+      ],
       "achievements": [
-        { "id": "first-out", "name": "First Out", "desc": "Win a game of Swipe", "icon": "cards", "tickets": 10, "when": { "wins": 1 } },
-        { "id": "card-sharp", "name": "Card Sharp", "desc": "Win 10 games of Swipe", "icon": "spade", "tickets": 40, "when": { "wins": 10 } },
+        { "id": "first-out", "name": "First Out", "desc": "Win a game of Swipe", "icon": "cards", "tickets": 10, "when": { "wins": 1, "filter": { "match": false } } },
+        { "id": "card-sharp", "name": "Card Sharp", "desc": "Win 10 games of Swipe", "icon": "spade", "tickets": 40, "when": { "wins": 10, "filter": { "match": false } } },
         { "id": "match-champ", "name": "Match Champion", "desc": "Win a whole Swipe match", "icon": "trophy", "tickets": 30, "when": { "wins": 1, "filter": { "match": true } } }
       ],
       "keys": [["Tap", "Build a set"], ["Play button", "Play it"]],
@@ -238,7 +243,9 @@
       "tickets": [{ "outcome": "win", "amount": 15 }, { "outcome": "loss", "amount": 3 }],
       "achievements": [
         { "id": "mission-accomplished", "name": "Mission Accomplished", "desc": "Win a round of Tradecraft", "icon": "spy", "tickets": 10, "when": { "wins": 1 } },
-        { "id": "spymaster-general", "name": "Spymaster General", "desc": "Win 10 rounds of Tradecraft", "icon": "crown", "tickets": 40, "when": { "wins": 10 } }
+        { "id": "spymaster-general", "name": "Spymaster General", "desc": "Win 10 rounds of Tradecraft", "icon": "crown", "tickets": 40, "when": { "wins": 10 } },
+        { "id": "handler", "name": "The Handler", "desc": "Win a round of Tradecraft as spymaster", "icon": "spy", "tickets": 15, "when": { "wins": 1, "filter": { "role": "spymaster" } } },
+        { "id": "plausible-deniability", "name": "Plausible Deniability", "desc": "Win a round because the other side touched the assassin", "icon": "dynamite", "tickets": 15, "when": { "wins": 1, "filter": { "reason": "assassin" } } }
       ],
       "keys": [["Tap a card", "Point at it"], ["Reveal", "Commit the guess"]],
       "cabinet": {
@@ -267,7 +274,7 @@
         { "id": "wins", "name": "Matches Won", "kind": "wins", "primary": true },
         { "id": "bots", "name": "Computers Beaten", "kind": "wins", "filter": { "vs": "bot" } }
       ],
-      "tickets": [{ "outcome": "win", "amount": 15 }, { "outcome": "loss", "amount": 3 }, { "outcome": "win", "filter": { "bot": "hard" }, "amount": 15 }],
+      "tickets": [{ "outcome": "win", "amount": 15 }, { "outcome": "loss", "amount": 3 }, { "outcome": "win", "filter": { "bot": "hard" }, "amount": 15, "label": "Beat Oru-Kaan" }],
       "achievements": [
         { "id": "beat-tobb", "name": "Dockside Hustled", "desc": "Beat Tobb at Pazaak", "icon": "cards", "tickets": 10, "when": { "wins": 1, "filter": { "bot": "easy" } } },
         { "id": "beat-vessa", "name": "Cantina Regular", "desc": "Beat Vessa at Pazaak", "icon": "cards", "tickets": 20, "when": { "wins": 1, "filter": { "bot": "normal" } } },

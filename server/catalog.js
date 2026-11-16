@@ -94,6 +94,8 @@ export function cleanGame(g, base = {}) {
     art: text(pick('art', ''), 120),
     icon: text(pick('icon', ''), 120),
     orientation: ['any', 'landscape', 'portrait'].includes(pick('orientation', 'any')) ? pick('orientation', 'any') : 'any',
+    // Where the arcade's little menu tab sits over the game (out of the way of its own buttons).
+    hud: ['top', 'bottom', 'top-left', 'top-right', 'bottom-left', 'bottom-right'].includes(pick('hud', 'top')) ? pick('hud', 'top') : 'top',
     boards,
     tickets: Array.isArray(pick('tickets', [])) ? pick('tickets', []) : [],
     achievements: (pick('achievements', []) || []).map(cleanAchievement).filter(Boolean),
@@ -208,6 +210,7 @@ export class Catalog {
       art: g.art ? `/catalog/${g.art}` : '',
       icon: g.icon ? `/catalog/${g.icon}` : '',
       orientation: g.orientation,
+      hud: g.hud,
       boards: g.boards,
       achievements: g.achievements.filter((a) => !a.secret).map(({ when, ...a }) => a),
       keys: g.keys,
@@ -220,7 +223,7 @@ export class Catalog {
     const shipped = this.shipped.find((g) => g.id === id);
     if (shipped) {
       const all = this.store.getSetting('games', {}) || {};
-      const allowed = ['url', 'enabled', 'order', 'title', 'tagline', 'description', 'tickets', 'cabinet', 'theme'];
+      const allowed = ['url', 'enabled', 'order', 'title', 'tagline', 'description', 'tickets', 'cabinet', 'theme', 'hud'];
       const next = { ...(all[id] || {}) };
       for (const k of allowed) if (k in patch) next[k] = patch[k];
       if ('url' in patch) next.url = cleanUrl(patch.url);
