@@ -25,10 +25,14 @@ export function ControllerTest() {
   useEffect(() => {
     if (c.connected) setTesting(true);
     return () => {
-      if (controller.value.connected) setTesting(false);
+      if (!controller.value.connected) return;
+      setTesting(false);
+      // Back to the arcade's menus, whatever game was being previewed.
+      useProfileFor(null);
     };
   }, [c.connected]);
-  // While testing, every button is ours, except holding Start and Coin to leave.
+  // While testing, the buttons only light up here (the controller types
+  // nothing). The menu button, or holding Start and Coin, goes back.
   useActions((a) => {
     if (a === 'back' || a === 'home') {
       go('/settings');
@@ -87,7 +91,7 @@ export function ControllerTest() {
             )}
             {step === 'max' && (
               <>
-                <p>Pull it all the way back and hold it, then press Save.</p>
+                <p>Pull it all the way back a couple of times, let it go, then press Save.</p>
                 <button
                   type="button"
                   class="btn btn--play"

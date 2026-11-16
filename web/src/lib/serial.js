@@ -3,12 +3,13 @@
 // tells it which game is on (so the buttons mean the right keys), lights the
 // marquee, and hears the menu button even while a game has the keyboard.
 //
-// Protocol: plain text lines, 115200 baud (ignored over USB).
+// Protocol: plain text lines, 115200 baud (ignored over USB). The firmware's
+// side is controller/firmware/au12-arcade-controller/core.h.
 //   → HELLO                       ← HELLO au12-arcade-controller <fw> <board>
-//   → PROFILE <name> STICK=KEYS|MOUSE UP=k52 B1=m1 PLUNGER=k2c:hold …
+//   → PROFILE <name> STICK=KEYS|MOUSE UP=k52 B1=m1 PLUNGER=k2c:hold …   ← OK PROFILE <name>
 //   → FX <attract|idle|game|record|coin|off> [rrggbb]
 //   → TEST ON|OFF                 ← IN <INPUT> <0|1> / PLG <0-1000> / NUD <x> <y>
-//   → CAL PLUNGER REST|MAX|SAVE   ← OK CAL …
+//   → CAL PLUNGER REST|MAX|SAVE   ← OK CAL … / ERR CAL …
 //                                 ← BTN HOME|COIN|START <0|1>, ACT (someone is playing)
 
 import { signal } from '@preact/signals';
@@ -72,10 +73,13 @@ async function open(p) {
   }
   port = p;
   writer = p.writable.getWriter();
-  patch({ connected: true });
   readLoop();
+  // A fresh connection gets the current profile and lights (the controller
+  // may have just been plugged in, starting from its universal profile).
   await send('HELLO');
   await send(currentProfile || navProfile());
+  if (lastFx) await send(lastFx);
+  patch({ connected: true });
   return true;
 }
 
@@ -144,12 +148,24 @@ export async function send(line) {
 
 /** Makes the buttons mean what this game expects (or the arcade's menus with no game). */
 export function useProfileFor(game) {
-  currentProfile = game ? profileLine(game.id, game.cabinet) : navProfile();
-  patch({ profile: game ? game.id : 'arcade' });
-  return send(currentProfile);
+  const line = game ? profileLine(game.id, game.cabinet) : navProfile();
+  const id = game ? game.id : 'arcade';
+  if (controller.peek().profile !== id) patch({ profile: id });
+  // The same profile again would change nothing but drop any held button.
+  if (line === currentProfile) return Promise.resolve(true);
+  currentProfile = line;
+  return send(line);
 }
 
-export const fx = (name, color) => send(`FX ${name}${color ? ` ${String(color).replace('#', '')}` : ''}`);
+let lastFx = null;
+/** The marquee lights. Steady effects aren't resent unchanged; record and coin always play. */
+export function fx(name, color) {
+  const line = `FX ${name}${color ? ` ${String(color).replace('#', '')}` : ''}`;
+  const steady = name !== 'record' && name !== 'coin';
+  if (steady && line === lastFx) return Promise.resolve(true);
+  if (steady) lastFx = line;
+  return send(line);
+}
 
 export async function setTesting(on) {
   patch({ testing: on, inputs: {} });

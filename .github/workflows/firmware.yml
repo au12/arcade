@@ -1,0 +1,67 @@
+name: Controller firmware
+
+# Tests the cabinet controller's firmware on a PC, builds it for the Pico and
+# the Pico 2, and attaches the .uf2 files to releases.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - controller/**
+      - web/src/lib/hid.js
+      - catalog/games.json
+      - .github/workflows/firmware.yml
+  pull_request:
+    paths:
+      - controller/**
+      - web/src/lib/hid.js
+      - catalog/games.json
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Logic and sketch tests
+        run: controller/test/run.sh
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        board:
+          - { name: pico, fqbn: "rp2040:rp2040:rpipico:usbstack=tinyusb" }
+          - { name: pico2, fqbn: "rp2040:rp2040:rpipico2:usbstack=tinyusb" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-arduino-cli@v2
+      - name: Raspberry Pi Pico core and libraries
+        run: |
+          arduino-cli config init
+          arduino-cli config add board_manager.additional_urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+          arduino-cli core update-index
+          arduino-cli core install rp2040:rp2040
+          arduino-cli lib install "Adafruit NeoPixel"
+      - name: Build
+        run: |
+          arduino-cli compile --fqbn "${{ matrix.board.fqbn }}" --warnings default --output-dir build controller/firmware/au12-arcade-controller
+          cp build/au12-arcade-controller.ino.uf2 "au12-arcade-controller-${{ matrix.board.name }}.uf2"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: firmware-${{ matrix.board.name }}
+          path: au12-arcade-controller-${{ matrix.board.name }}.uf2
+      - name: Attach to the release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" "au12-arcade-controller-${{ matrix.board.name }}.uf2" --clobber

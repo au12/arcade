@@ -1,6 +1,6 @@
 import { render } from 'preact';
 import { useEffect, useMemo } from 'preact/hooks';
-import { signal, effect } from '@preact/signals';
+import { signal, effect, computed } from '@preact/signals';
 import '@fontsource/bungee/latin-400.css';
 import '@fontsource/bungee-shade/latin-400.css';
 import '@fontsource/silkscreen/latin-400.css';
@@ -234,20 +234,33 @@ function listen() {
 // ───────────── the cabinet ─────────────
 
 function cabinet() {
-  // The controller follows the screen: the arcade's menus, or the game being played.
-  effect(() => {
+  // The controller follows the screen: the arcade's menus (the pause menu
+  // included), or the game being played, and the marquee lights with it.
+  // (Only `connected` is read from the controller: its other fields change
+  // with every button press.)
+  const connected = computed(() => controller.value.connected);
+  const target = computed(() => {
     const p = playing.value;
     const g = p && games.value.find((x) => x.id === p.game);
-    if (!controller.value.connected) return;
-    useProfileFor(g || null);
-    if (!g) fx(route.value.parts[0] === 'attract' ? 'attract' : 'idle');
+    return { game: g && !p.menu ? g : null, color: g?.theme?.primary || null, attract: route.value.parts[0] === 'attract', playing: Boolean(g) };
+  });
+  effect(() => {
+    if (!connected.value) return;
+    const t = target.value;
+    useProfileFor(t.game);
+    if (t.playing) fx('game', t.color);
+    else fx(t.attract ? 'attract' : 'idle');
   });
   onControllerEvent(({ kind, args }) => {
-    lastInput.value = Date.now();
+    // Someone at the controls (not the controller's replies to the arcade).
+    if (kind === 'BTN' || kind === 'ACT' || kind === 'IN') lastInput.value = Date.now();
     if (kind === 'BTN' && args[1] === '1') {
       const id = args[0];
       if (id === 'HOME') window.dispatchEvent(new CustomEvent('arcade:home'));
-      if (id === 'COIN' && !playing.value) sfx.coin();
+      if (id === 'COIN') {
+        fx('coin');
+        if (!playing.value) sfx.coin();
+      }
     }
   });
   autoConnect();
