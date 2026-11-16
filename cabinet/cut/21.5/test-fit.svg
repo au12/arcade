@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="230mm" height="80mm" viewBox="0 0 230 80">
+<title>Fit test for 6 mm plywood, kerf 0.15 mm</title>
+<desc>au12 Arcade cabinet. Red: cut. Blue: engrave (fill). Green: part labels (light engrave, optional). Magenta: dowel pockets (engrave about 2.5 mm deep). Units: mm.</desc>
+<g transform="matrix(1 0 0 -1 0 80)">
+<g id="cut" fill="none" stroke="#ff0000" stroke-width="0.1">
+<path id="test-fit" d="M5 5L181 5L181 75L5 75Z"/>
+<path d="M17 38.925L31.25 38.925L31.25 44.75L17 44.75Z"/>
+<path d="M39 38.925L53.25 38.925L53.25 44.85L39 44.85Z"/>
+<path d="M61 38.925L75.25 38.925L75.25 44.95L61 44.95Z"/>
+<path d="M83 38.925L97.25 38.925L97.25 45.05L83 45.05Z"/>
+<path d="M105 38.925L119.25 38.925L119.25 45.15L105 45.15Z"/>
+<circle cx="137" cy="40" r="14.225"/>
+<circle cx="167" cy="54" r="11.925"/>
+<circle cx="167" cy="25" r="3.425"/>
+<path id="test-tab" d="M191 5L221 5L221 29L213 29L213 41L199 41L199 29L191 29Z"/>
+</g>
+<g id="engrave" fill="#0000ff" stroke="none">
+<circle cx="19.95" cy="27" r="0.36"/>
+<circle cx="20.85" cy="27" r="0.36"/>
+<circle cx="21.75" cy="27" r="0.36"/>
+<circle cx="22.65" cy="27" r="0.36"/>
+<circle cx="24.45" cy="24.3" r="0.36"/>
+<circle cx="27.15" cy="29.7" r="0.36"/>
+<circle cx="26.25" cy="28.8" r="0.36"/>
+<circle cx="27.15" cy="28.8" r="0.36"/>
+<circle cx="27.15" cy="27.9" r="0.36"/>
+<circle cx="27.15" cy="27" r="0.36"/>
+<circle cx="27.15" cy="26.1" r="0.36"/>
+<circle cx="27.15" cy="25.2" r="0.36"/>
+<circle cx="26.25" cy="24.3" r="0.36"/>
+<circle cx="27.15" cy="24.3" r="0.36"/>
+<circle cx="28.05" cy="24.3" r="0.36"/>
+<circle cx="42.4" cy="28.8" r="0.36"/>
+<circle cx="42.4" cy="27.9" r="0.36"/>
+<circle cx="40.6" cy="27" r="0.36"/>
+<circle cx="41.5" cy="27" r="0.36"/>
+<circle cx="42.4" cy="27" r="0.36"/>
+<circle cx="43.3" cy="27" r="0.36"/>
+<circle cx="44.2" cy="27" r="0.36"/>
+<circle cx="42.4" cy="26.1" r="0.36"/>
+<circle cx="42.4" cy="25.2" r="0.36"/>
+<circle cx="46" cy="24.3" r="0.36"/>
+<circle cx="48.7" cy="29.7" r="0.36"/>
+<circle cx="49.6" cy="29.7" r="0.36"/>
+<circle cx="50.5" cy="29.7" r="0.36"/>
+<circle cx="47.8" cy="28.8" r="0.36"/>
+<circle cx="51.4" cy="28.8" r="0.36"/>
+<circle cx="47.8" cy="27.9" r="0.36"/>
+<circle cx="50.5" cy="27.9" r="0.36"/>
+<circle cx="51.4" cy="27.9" r="0.36"/>
+<circle cx="47.8" cy="27" r="0.36"/>
+<circle cx="49.6" cy="27" r="0.36"/>
+<circle cx="51.4" cy="27" r="0.36"/>
+<circle cx="47.8" cy="26.1" r="0.36"/>
+<circle cx="48.7" cy="26.1" r="0.36"/>
+<circle cx="51.4" cy="26.1" r="0.36"/>
+<circle cx="47.8" cy="25.2" r="0.36"/>
+<circle cx="51.4" cy="25.2" r="0.36"/>
+<circle cx="48.7" cy="24.3" r="0.36"/>
+<circle cx="49.6" cy="24.3" r="0.36"/>
+<circle cx="50.5" cy="24.3" r="0.36"/>
+<circle cx="65.3" cy="28.8" r="0.36"/>
+<circle cx="65.3" cy="27.9" r="0.36"/>
+<circle cx="63.5" cy="27" r="0.36"/>
+<circle cx="64.4" cy="27" r="0.36"/>
+<circle cx="65.3" cy="27" r="0.36"/>
+<circle cx="66.2" cy="27" r="0.36"/>
+<circle cx="67.1" cy="27" r="0.36"/>
+<circle cx="65.3" cy="26.1" r="0.36"/>
+<circle cx="65.3" cy="25.2" r="0.36"/>
+<circle cx="68.9" cy="24.3" r="0.36"/>
+<circle cx="71.6" cy="29.7" r="0.36"/>
+<circle cx="70.7" cy="28.8" r="0.36"/>
+<circle cx="71.6" cy="28.8" r="0.36"/>
+<circle cx="71.6" cy="27.9" r="0.36"/>
+<circle cx="71.6" cy="27" r="0.36"/>
+<circle cx="71.6" cy="26.1" r="0.36"/>
+<circle cx="71.6" cy="25.2" r="0.36"/>
+<circle cx="70.7" cy="24.3" r="0.36"/>
+<circle cx="71.6" cy="24.3" r="0.36"/>
+<circle cx="72.5" cy="24.3" r="0.36"/>
+<circle cx="86.4" cy="28.8" r="0.36"/>
+<circle cx="86.4" cy="27.9" r="0.36"/>
+<circle cx="84.6" cy="27" r="0.36"/>
+<circle cx="85.5" cy="27" r="0.36"/>
+<circle cx="86.4" cy="27" r="0.36"/>
+<circle cx="87.3" cy="27" r="0.36"/>
+<circle cx="88.2" cy="27" r="0.36"/>
+<circle cx="86.4" cy="26.1" r="0.36"/>
+<circle cx="86.4" cy="25.2" r="0.36"/>
+<circle cx="90" cy="24.3" r="0.36"/>
+<circle cx="92.7" cy="29.7" r="0.36"/>
+<circle cx="93.6" cy="29.7" r="0.36"/>
+<circle cx="94.5" cy="29.7" r="0.36"/>
+<circle cx="91.8" cy="28.8" r="0.36"/>
+<circle cx="95.4" cy="28.8" r="0.36"/>
+<circle cx="95.4" cy="27.9" r="0.36"/>
+<circle cx="94.5" cy="27" r="0.36"/>
+<circle cx="93.6" cy="26.1" r="0.36"/>
+<circle cx="92.7" cy="25.2" r="0.36"/>
+<circle cx="91.8" cy="24.3" r="0.36"/>
+<circle cx="92.7" cy="24.3" r="0.36"/>
+<circle cx="93.6" cy="24.3" r="0.36"/>
+<circle cx="94.5" cy="24.3" r="0.36"/>
+<circle cx="95.4" cy="24.3" r="0.36"/>
+<circle cx="108.4" cy="28.8" r="0.36"/>
+<circle cx="108.4" cy="27.9" r="0.36"/>
+<circle cx="106.6" cy="27" r="0.36"/>
+<circle cx="107.5" cy="27" r="0.36"/>
+<circle cx="108.4" cy="27" r="0.36"/>
+<circle cx="109.3" cy="27" r="0.36"/>
+<circle cx="110.2" cy="27" r="0.36"/>
+<circle cx="108.4" cy="26.1" r="0.36"/>
+<circle cx="108.4" cy="25.2" r="0.36"/>
+<circle cx="112" cy="24.3" r="0.36"/>
+<circle cx="113.8" cy="29.7" r="0.36"/>
+<circle cx="114.7" cy="29.7" r="0.36"/>
+<circle cx="115.6" cy="29.7" r="0.36"/>
+<circle cx="116.5" cy="29.7" r="0.36"/>
+<circle cx="117.4" cy="29.7" r="0.36"/>
+<circle cx="116.5" cy="28.8" r="0.36"/>
+<circle cx="115.6" cy="27.9" r="0.36"/>
+<circle cx="116.5" cy="27" r="0.36"/>
+<circle cx="117.4" cy="26.1" r="0.36"/>
+<circle cx="113.8" cy="25.2" r="0.36"/>
+<circle cx="117.4" cy="25.2" r="0.36"/>
+<circle cx="114.7" cy="24.3" r="0.36"/>
+<circle cx="115.6" cy="24.3" r="0.36"/>
+<circle cx="116.5" cy="24.3" r="0.36"/>
+<circle cx="55" cy="68" r="0.4"/>
+<circle cx="56" cy="68" r="0.4"/>
+<circle cx="54" cy="67" r="0.4"/>
+<circle cx="53" cy="66" r="0.4"/>
+<circle cx="53" cy="65" r="0.4"/>
+<circle cx="54" cy="65" r="0.4"/>
+<circle cx="55" cy="65" r="0.4"/>
+<circle cx="56" cy="65" r="0.4"/>
+<circle cx="53" cy="64" r="0.4"/>
+<circle cx="57" cy="64" r="0.4"/>
+<circle cx="53" cy="63" r="0.4"/>
+<circle cx="57" cy="63" r="0.4"/>
+<circle cx="54" cy="62" r="0.4"/>
+<circle cx="55" cy="62" r="0.4"/>
+<circle cx="56" cy="62" r="0.4"/>
+<circle cx="63" cy="68" r="0.4"/>
+<circle cx="67" cy="68" r="0.4"/>
+<circle cx="63" cy="67" r="0.4"/>
+<circle cx="64" cy="67" r="0.4"/>
+<circle cx="66" cy="67" r="0.4"/>
+<circle cx="67" cy="67" r="0.4"/>
+<circle cx="63" cy="66" r="0.4"/>
+<circle cx="65" cy="66" r="0.4"/>
+<circle cx="67" cy="66" r="0.4"/>
+<circle cx="63" cy="65" r="0.4"/>
+<circle cx="65" cy="65" r="0.4"/>
+<circle cx="67" cy="65" r="0.4"/>
+<circle cx="63" cy="64" r="0.4"/>
+<circle cx="67" cy="64" r="0.4"/>
+<circle cx="63" cy="63" r="0.4"/>
+<circle cx="67" cy="63" r="0.4"/>
+<circle cx="63" cy="62" r="0.4"/>
+<circle cx="67" cy="62" r="0.4"/>
+<circle cx="69" cy="68" r="0.4"/>
+<circle cx="73" cy="68" r="0.4"/>
+<circle cx="69" cy="67" r="0.4"/>
+<circle cx="70" cy="67" r="0.4"/>
+<circle cx="72" cy="67" r="0.4"/>
+<circle cx="73" cy="67" r="0.4"/>
+<circle cx="69" cy="66" r="0.4"/>
+<circle cx="71" cy="66" r="0.4"/>
+<circle cx="73" cy="66" r="0.4"/>
+<circle cx="69" cy="65" r="0.4"/>
+<circle cx="71" cy="65" r="0.4"/>
+<circle cx="73" cy="65" r="0.4"/>
+<circle cx="69" cy="64" r="0.4"/>
+<circle cx="73" cy="64" r="0.4"/>
+<circle cx="69" cy="63" r="0.4"/>
+<circle cx="73" cy="63" r="0.4"/>
+<circle cx="69" cy="62" r="0.4"/>
+<circle cx="73" cy="62" r="0.4"/>
+</g>
+<g id="labels" fill="#00a000" stroke="none">
+
+</g>
+<g id="pockets" fill="#ff00ff" stroke="none">
+
+</g>
+</g>
+</svg>

@@ -42,8 +42,10 @@
 
 // ── Marquee lights (WS2812B, through a 74AHCT125 to 5 V) ─────────
 #define PIN_LEDS 22
-#define LED_COUNT 36       // 60 LED/m strip across a 560 mm marquee
-#define LED_BRIGHTNESS 110 // 0-255; caps the strip's current (36 LEDs at 110 is under 1 A)
+#define LED_ROWS 2         // the cabinet's LED board has two rows, wired as one snaking strip
+#define LED_PER_ROW 27     // 60 LED/m across the 486 mm marquee (the cabinet generator says how many)
+#define LED_COUNT (LED_ROWS * LED_PER_ROW)
+#define LED_BRIGHTNESS 110 // 0-255; caps the strip's current (54 LEDs at 110 is about 1.5 A)
 
 // ── Plunger (slide potentiometer, wiper to GP26/ADC0) ────────────
 #define PIN_PLUNGER 26

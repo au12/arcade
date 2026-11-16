@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="508mm" height="305mm" viewBox="0 0 508 305">
+<title>au12 Arcade cabinet: 3 mm opal acrylic, sheet 1</title>
+<desc>au12 Arcade cabinet. Red: cut. Blue: engrave (fill). Green: part labels (light engrave, optional). Magenta: dowel pockets (engrave about 2.5 mm deep). Units: mm.</desc>
+<g transform="matrix(1 0 0 -1 0 305)">
+<g id="cut" fill="none" stroke="#ff0000" stroke-width="0.1">
+<path id="marquee-diffuser" d="M3 3L488 3L488 109.667L3 109.667Z"/>
+</g>
+<g id="engrave" fill="#0000ff" stroke="none">
+
+</g>
+<g id="labels" fill="#00a000" stroke="none">
+
+</g>
+<g id="pockets" fill="#ff00ff" stroke="none">
+
+</g>
+</g>
+</svg>

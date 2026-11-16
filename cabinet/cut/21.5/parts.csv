@@ -1,0 +1,32 @@
+id,name,material,width_mm,height_mm,sheet,turned,face
+floor-front,"Floor, front",ply6,497.0,284.0,ply-01.svg,0,
+cp,"Control panel",ply6,497.0,231.3,ply-02.svg,0,
+shelf,"Monitor shelf",ply6,497.0,58.0,ply-02.svg,0,
+back-lower,"Back, lower",ply6,497.0,190.0,ply-03.svg,0,
+led-board,"LED board",ply6,497.0,102.7,ply-03.svg,0,
+floor-back,"Floor, back",ply6,497.0,173.8,ply-04.svg,0,
+marquee,"Marquee",ply6,497.0,116.7,ply-04.svg,0,
+back-upper,"Back, upper",ply6,497.0,173.1,ply-05.svg,0,
+apron,"Front",ply6,497.0,93.3,ply-05.svg,0,
+door-stop-1,"Door stop bottom",ply6,486.0,24.0,ply-05.svg,0,
+vesa,"Monitor brace (VESA)",ply6,497.0,150.0,ply-06.svg,0,
+top,"Top",ply6,497.0,137.8,ply-06.svg,0,
+speaker,"Speaker panel",ply6,497.0,92.0,ply-07.svg,0,
+cp-beam,"Control panel beam",ply6,497.0,48.0,ply-07.svg,0,
+door-stop-2,"Door stop top",ply6,486.0,24.0,ply-07.svg,0,
+left-inner-4,"Left side, inner layer, piece 4",ply6,147.6,108.4,ply-07.svg,0,
+right-inner-4,"Right side, inner layer, piece 4",ply6,147.6,108.4,ply-07.svg,0,flipped
+door,"Back door",ply6,484.0,258.0,ply-08.svg,0,
+left-outer-1,"Left side, outer layer, piece 1",ply6,470.0,216.9,ply-09.svg,0,flipped
+right-outer-1,"Right side, outer layer, piece 1",ply6,470.0,216.9,ply-10.svg,0,
+left-inner-1,"Left side, inner layer, piece 1",ply6,470.0,187.4,ply-11.svg,0,
+right-inner-1,"Right side, inner layer, piece 1",ply6,470.0,187.4,ply-12.svg,0,flipped
+left-outer-2,"Left side, outer layer, piece 2",ply6,221.2,216.9,ply-13.svg,90,flipped
+right-outer-2,"Right side, outer layer, piece 2",ply6,221.2,216.9,ply-13.svg,0,
+left-outer-3,"Left side, outer layer, piece 3",ply6,150.7,216.9,ply-14.svg,0,flipped
+right-outer-3,"Right side, outer layer, piece 3",ply6,150.7,216.9,ply-14.svg,0,
+left-inner-3,"Left side, inner layer, piece 3",ply6,155.5,216.9,ply-14.svg,0,
+right-inner-3,"Right side, inner layer, piece 3",ply6,155.5,216.9,ply-15.svg,0,flipped
+left-inner-2,"Left side, inner layer, piece 2",ply6,200.2,137.9,ply-15.svg,90,
+right-inner-2,"Right side, inner layer, piece 2",ply6,200.2,137.9,ply-15.svg,0,flipped
+marquee-diffuser,"Marquee diffuser (opal acrylic, glued behind the marquee)",opal3,485.0,106.7,opal-01.svg,0,

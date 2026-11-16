@@ -376,9 +376,13 @@ void loop1() {
     startedAt = now;
   }
   uint32_t t = now - startedAt;
-  for (uint16_t i = 0; i < LED_COUNT; i++) {
-    Rgb c = fxPixel(fx, t, i, LED_COUNT);
-    strip.setPixelColor(i, c.r, c.g, c.b);
+  // The strip snakes: every other row runs back the other way.
+  for (uint16_t row = 0; row < LED_ROWS; row++) {
+    for (uint16_t k = 0; k < LED_PER_ROW; k++) {
+      uint16_t across = row % 2 ? LED_PER_ROW - 1 - k : k;
+      Rgb c = fxPixel(fx, t + row * 140, across, LED_PER_ROW);
+      strip.setPixelColor(row * LED_PER_ROW + k, c.r, c.g, c.b);
+    }
   }
   strip.show();
 }

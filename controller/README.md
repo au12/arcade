@@ -19,7 +19,7 @@ Without the arcade (a different PC, or before the page has loaded), the controll
 | Pinball plunger + 60 mm slide potentiometer | Bourns PTA6043 (10 kΩ linear) or similar. The rod pushes the slider through a printed or laser-cut coupler. |
 | LSM6DSOX breakout | Adafruit 4438 (STEMMA QT). Screwed flat to the cabinet floor. |
 | EC11 rotary encoder with push switch | The volume knob. |
-| WS2812B strip, 60 LED/m | 0.6 m (36 LEDs) behind the marquee. |
+| WS2812B strip, 60 LED/m | 1 m, cut into two rows of 27 on the LED board behind the marquee, wired as one snaking strip. |
 | 74AHCT125 | Lifts the LED data line to 5 V. Plus a 330 Ω resistor and a 1000 µF capacitor. |
 | 5 V 4 A power supply | For the LEDs. The Pico is powered over USB by the PC; join the grounds. |
 | 2.8 mm (.110") quick-disconnects, 22 AWG wire | One ground daisy-chained through every switch. |

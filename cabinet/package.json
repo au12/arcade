@@ -1,0 +1,17 @@
+{
+  "name": "au12-arcade-cabinet",
+  "private": true,
+  "type": "module",
+  "description": "The parametric laser-cut bartop cabinet: cut sheets, parts list, drawings and a 3D viewer.",
+  "license": "MIT",
+  "scripts": {
+    "build": "node generate.mjs && node build-viewer.mjs",
+    "generate": "node generate.mjs",
+    "viewer": "node build-viewer.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "polygon-clipping": "^0.15.7",
+    "three": "^0.170.0"
+  }
+}
