@@ -1,0 +1,25 @@
+services:
+  arcade:
+    build: .
+    image: ghcr.io/au12/arcade:latest
+    container_name: arcade
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ARCADE_NAME: au12 Arcade
+      # Where the arcade is reached, for links and QR codes on the cabinet.
+      PUBLIC_URL: "https://arcade.example.com"
+      # The games live at https://<game>.example.com (totem., swipe., …).
+      # Any one of them can be pointed elsewhere with GAME_<ID>_URL.
+      GAME_DOMAIN: example.com
+      # GAME_TOTEM_URL: "https://pinball.example.com"
+      # Turns on the admin page at /admin. Keep /admin to your own network at the proxy.
+      # ADMIN_PASSWORD: "a-long-password-of-your-own"
+      # TRUST_PROXY: "1"
+    volumes:
+      # The database: players, scores, tickets and settings.
+      - ./data:/data
+    # The container runs as uid 1000. If ./data belongs to someone else
+    # (Unraid uses 99:100), set the matching ids here:
+    # user: "99:100"

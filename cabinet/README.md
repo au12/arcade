@@ -4,7 +4,7 @@ A bartop arcade cabinet for the au12 Arcade, cut on a 12 × 20 inch laser from 6
 
 ![The cabinet, rendered from the same model the cut files come from](docs/hero.jpg)
 
-**[Turn it around in 3D](cut/21.5/viewer.html)** (download and open it in a browser; it's one self-contained file). Point at any part for its name, pull the slider to take it apart.
+**[Turn it around in 3D](https://au12.github.io/arcade/)**, or download [`cut/21.5/viewer.html`](cut/21.5/viewer.html) and open it (it's one self-contained file). Point at any part for its name, pull the slider to take it apart.
 
 It is parametric: the cut files are generated from the monitor's size, the plywood's real thickness, your laser's kerf and bed, and a few angles. A different monitor or a thicker sheet is one command, not a redesign, and the generator checks its own work (no two parts in the same place, the monitor has room, every slot has wood around it, every part fits the bed) before it writes anything.
 

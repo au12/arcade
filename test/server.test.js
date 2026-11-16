@@ -144,6 +144,18 @@ test('results, wins boards and game achievements with filters', async () => {
   assert.equal(bots.json.entries[0].wins, 1);
   const wrong = await kid.post('/api/v1/results', { game: 'pazaak', outcome: 'victory' });
   assert.equal(wrong.status, 400);
+
+  // A filter of false means "not true": a result without the key counts.
+  const cards = client();
+  await cards.post('/api/v1/players', { name: 'Card Shark' });
+  await cards.post('/api/v1/results', { game: 'swipe', outcome: 'win' });
+  await cards.post('/api/v1/results', { game: 'swipe', outcome: 'win', meta: { match: false, players: 3 } });
+  const both = await cards.post('/api/v1/results', { game: 'swipe', outcome: 'win', meta: { match: true } });
+  assert.ok(both.json.tickets.breakdown.some((x) => x.label === 'Match won'));
+  const games = await cards.get('/api/v1/games/swipe/boards/wins');
+  assert.equal(games.json.entries.find((e) => e.player.name === 'Card Shark').wins, 2);
+  const matches = await cards.get('/api/v1/games/swipe/boards/matches');
+  assert.equal(matches.json.entries.find((e) => e.player.name === 'Card Shark').wins, 1);
 });
 
 test('hall of fame medals and profiles', async () => {

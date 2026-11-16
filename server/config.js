@@ -1,10 +1,19 @@
 // All configuration comes from environment variables, so the same image runs
 // anywhere. Every value has a sensible default.
 
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+function readVersion() {
+  try {
+    return fs.readFileSync(path.join(root, 'VERSION'), 'utf8').trim() || 'dev';
+  } catch {
+    return 'dev';
+  }
+}
 const env = process.env;
 
 const int = (name, fallback, min, max) => {
@@ -54,7 +63,7 @@ export const config = {
     .map((s) => cleanUrl(s))
     .filter(Boolean),
   logLevel: env.LOG_LEVEL || 'info',
-  version: env.VERSION || 'dev',
+  version: env.VERSION || readVersion(),
 };
 
 export const log = {

@@ -1,0 +1,52 @@
+name: Cabinet viewer
+
+# Publishes the cabinet's 3D viewer to GitHub Pages. Turn Pages on once:
+# Settings → Pages → Source: GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - cabinet/**
+      - web/src/lib/dmdfont.js
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Generate the cabinet and its viewer
+        working-directory: cabinet
+        run: |
+          npm ci --no-audit --no-fund
+          node generate.mjs
+          node build-viewer.mjs
+          mkdir -p ../site
+          cp cut/21.5/viewer.html ../site/index.html
+          cp -r cut ../site/cut
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>arcade</Name>
+  <Repository>ghcr.io/au12/arcade:latest</Repository>
+  <Registry>https://github.com/au12/arcade/pkgs/container/arcade</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/au12/arcade</Support>
+  <Project>https://github.com/au12/arcade</Project>
+  <Overview>The au12 Arcade: one installable app for every self-hosted game on your shelf (Totem, Space Cadet, Nanosaur, Marble Drop, Chalkfall, Swipe, Tradecraft, Pazaak and your own). Family players with pixel avatars, high scores and records across the games, tickets and a prize counter, achievements, and an attract-mode kiosk for a real cabinet. Each game sets ARCADE_URL to this container's address.</Overview>
+  <Category>GameServers: Productivity:</Category>
+  <WebUI>http://[IP]:[PORT:8080]/</WebUI>
+  <Icon>https://raw.githubusercontent.com/au12/arcade/main/icon.png</Icon>
+  <ExtraParams>--user 99:100</ExtraParams>
+  <Config Name="Web UI" Target="8080" Default="8095" Mode="tcp" Description="Web port" Type="Port" Display="always" Required="true" Mask="false">8095</Config>
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/arcade" Mode="rw" Description="The database: players, scores, tickets, settings" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/arcade</Config>
+  <Config Name="Public address" Target="PUBLIC_URL" Default="" Mode="" Description="Where the arcade is reached (https://arcade.example.com). Used for links and QR codes." Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Games' domain" Target="GAME_DOMAIN" Default="" Mode="" Description="Games are found at https://&lt;game&gt;.&lt;this domain&gt; (totem., swipe., …). Point any one elsewhere in the admin page or with GAME_&lt;ID&gt;_URL." Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Admin password" Target="ADMIN_PASSWORD" Default="" Mode="" Description="Turns on the admin page at /admin. Keep /admin to your own network at the proxy." Type="Variable" Display="always" Required="false" Mask="true"></Config>
+  <Config Name="Arcade name" Target="ARCADE_NAME" Default="au12 Arcade" Mode="" Description="Shown on the marquee, in the attract loop and as the installed app's name" Type="Variable" Display="advanced" Required="false" Mask="false">au12 Arcade</Config>
+  <Config Name="Trust proxy" Target="TRUST_PROXY" Default="1" Mode="" Description="How many reverse proxies are in front (1 for Nginx Proxy Manager, 0 for none)" Type="Variable" Display="advanced" Required="false" Mask="false">1</Config>
+  <Config Name="Open sign-up" Target="OPEN_SIGNUP" Default="true" Mode="" Description="Anyone who opens the arcade can add a player. false makes it an admin job." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Changes>
+### 1.0.0
+- The arcade: players, cross-game high scores, tickets, prizes, achievements, the kiosk.
+  </Changes>
+</Container>

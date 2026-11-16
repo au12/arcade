@@ -31,8 +31,15 @@ export function filterSql(filter, alias = 'r') {
   const params = [];
   for (const [k, v] of Object.entries(filter || {})) {
     if (!FILTER_KEY.test(k)) continue;
-    parts.push(`json_extract(${alias}.meta, '$.${k}') = ?`);
-    params.push(v === true ? 1 : v === false ? 0 : v);
+    const at = `json_extract(${alias}.meta, '$.${k}')`;
+    // true and false mean truthy and falsy, as in metaMatches: a result with
+    // no such key at all counts as false.
+    if (v === true) parts.push(`(${at} IS NOT NULL AND ${at} NOT IN (0, ''))`);
+    else if (v === false) parts.push(`(${at} IS NULL OR ${at} IN (0, ''))`);
+    else {
+      parts.push(`${at} = ?`);
+      params.push(v);
+    }
   }
   return { sql: parts.length ? ` AND ${parts.join(' AND ')}` : '', params };
 }

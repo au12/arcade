@@ -15,7 +15,8 @@ import { fileURLToPath } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const out = path.join(here, 'dist');
 const watch = process.argv.includes('--watch');
-const version = process.env.VERSION || JSON.parse(fs.readFileSync(path.join(here, '..', 'package.json'), 'utf8')).version;
+const versionFile = path.join(here, '..', 'VERSION');
+const version = process.env.VERSION || (fs.existsSync(versionFile) ? fs.readFileSync(versionFile, 'utf8').trim() : JSON.parse(fs.readFileSync(path.join(here, '..', 'package.json'), 'utf8')).version);
 
 const entries = {
   app: path.join(here, 'src', 'main.jsx'),

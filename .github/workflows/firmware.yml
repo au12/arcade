@@ -16,9 +16,14 @@ on:
       - controller/**
       - web/src/lib/hid.js
       - catalog/games.json
-  release:
-    types: [published]
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      release:
+        description: The release tag to attach the .uf2 files to (set by the Release workflow)
+        type: string
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -61,7 +66,7 @@ jobs:
           name: firmware-${{ matrix.board.name }}
           path: au12-arcade-controller-${{ matrix.board.name }}.uf2
       - name: Attach to the release
-        if: github.event_name == 'release'
+        if: ${{ inputs.release }}
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ github.event.release.tag_name }}" "au12-arcade-controller-${{ matrix.board.name }}.uf2" --clobber
+        run: gh release upload "${{ inputs.release }}" "au12-arcade-controller-${{ matrix.board.name }}.uf2" --clobber
