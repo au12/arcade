@@ -77,7 +77,8 @@ async function open(p) {
   // A fresh connection gets the current profile and lights (the controller
   // may have just been plugged in, starting from its universal profile).
   await send('HELLO');
-  await send(currentProfile || navProfile());
+  currentProfile ||= navProfile();
+  await send(currentProfile);
   if (lastFx) await send(lastFx);
   patch({ connected: true });
   return true;
