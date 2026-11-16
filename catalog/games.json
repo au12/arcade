@@ -1,0 +1,284 @@
+{
+  "$comment": "The games in the arcade. URLs left empty are filled in from GAME_DOMAIN (https://<id>.<GAME_DOMAIN>) or set in the admin page. Board kinds: best (a player's best value), wins (results won). Cabinet maps use KeyboardEvent.code names, mouse:left|right|middle, or {key, mode} for the plunger.",
+  "games": [
+    {
+      "id": "totem",
+      "title": "Totem",
+      "maker": "Gottlieb",
+      "year": 1979,
+      "genre": "Pinball",
+      "players": "1–4",
+      "tagline": "Drop the targets, light the hole, chase the Special.",
+      "description": "A 1979 Gottlieb System 1 table rebuilt in the browser with real Visual Pinball physics. Clear the A-B-C-D lanes and the drop targets to light the hole for Special. The arcade's oldest machine, and Mom's favorite.",
+      "url": "",
+      "repo": "https://github.com/au12/totem",
+      "theme": { "primary": "#e5402f", "secondary": "#f4cf3f", "accent": "#2c56c8", "bg": "#150d0b" },
+      "art": "art/totem.svg",
+      "icon": "icons/totem.png",
+      "orientation": "any",
+      "boards": [
+        { "id": "score", "name": "High Score", "kind": "best", "order": "desc", "format": "int", "primary": true }
+      ],
+      "tickets": [{ "board": "score", "per": 10000, "max": 60 }],
+      "achievements": [
+        { "id": "fifty-k", "name": "Warmed Up", "desc": "Score 50,000 on Totem", "icon": "flipper", "tickets": 10, "when": { "board": "score", "gte": 50000 } },
+        { "id": "six-figures", "name": "Six Figures", "desc": "Score 100,000 on Totem", "icon": "totem", "tickets": 25, "when": { "board": "score", "gte": 100000 } },
+        { "id": "totem-master", "name": "Keeper of the Totem", "desc": "Score 250,000 on Totem", "icon": "crown", "tickets": 60, "when": { "board": "score", "gte": 250000 } }
+      ],
+      "keys": [["Shift keys", "Flippers"], ["Space (hold)", "Launch"], ["T", "Nudge"], ["1", "Start / add player"]],
+      "cabinet": {
+        "stick": "keys",
+        "map": {
+          "UP": "ArrowUp", "DOWN": "ArrowDown", "LEFT": "ArrowLeft", "RIGHT": "ArrowRight",
+          "LFLIP": "ShiftLeft", "RFLIP": "ShiftRight", "B1": "ShiftLeft", "B3": "ShiftRight",
+          "B2": "Space", "B5": "KeyT",
+          "PLUNGER": { "key": "Space", "mode": "hold" }, "LAUNCH": "Space",
+          "NUDGE_UP": "KeyT", "NUDGE_L": "KeyX", "NUDGE_R": "Period",
+          "START": "Enter", "COIN": "Digit1"
+        },
+        "hints": [["LFLIP", "Left flipper"], ["RFLIP", "Right flipper"], ["PLUNGER", "Pull and let go to launch"], ["NUDGE", "Bump the cabinet to nudge"], ["COIN", "Add a player"], ["START", "Start"]]
+      }
+    },
+    {
+      "id": "spacecadet",
+      "title": "Space Cadet",
+      "maker": "Cinematronics & Maxis",
+      "year": 1995,
+      "genre": "Pinball",
+      "players": "1–4",
+      "tagline": "Climb the ranks from Cadet to Fleet Admiral.",
+      "description": "3D Pinball: Space Cadet, the decompiled original running in WebAssembly with frame-perfect physics. Light the launch ramp, fly missions and refuel before the ball drains.",
+      "url": "",
+      "repo": "https://github.com/au12/spacecadet-web",
+      "theme": { "primary": "#f5a524", "secondary": "#7a5cff", "accent": "#d9e2ff", "bg": "#0b0930" },
+      "art": "art/spacecadet.svg",
+      "icon": "icons/spacecadet.png",
+      "orientation": "any",
+      "boards": [
+        { "id": "score", "name": "High Score", "kind": "best", "order": "desc", "format": "int", "primary": true }
+      ],
+      "tickets": [{ "board": "score", "per": 100000, "max": 60 }],
+      "achievements": [
+        { "id": "million", "name": "Millionaire Cadet", "desc": "Score 1,000,000 on Space Cadet", "icon": "rocket", "tickets": 15, "when": { "board": "score", "gte": 1000000 } },
+        { "id": "commodore", "name": "Commodore Class", "desc": "Score 5,000,000 on Space Cadet", "icon": "star", "tickets": 40, "when": { "board": "score", "gte": 5000000 } },
+        { "id": "fleet-admiral", "name": "Fleet Admiral", "desc": "Score 10,000,000 on Space Cadet", "icon": "crown", "tickets": 80, "when": { "board": "score", "gte": 10000000 } }
+      ],
+      "keys": [["Shift keys", "Flippers"], ["Space (hold)", "Launch"], ["T", "Tilt"], ["F2", "New game"]],
+      "cabinet": {
+        "stick": "keys",
+        "map": {
+          "UP": "ArrowUp", "DOWN": "ArrowDown", "LEFT": "ArrowLeft", "RIGHT": "ArrowRight",
+          "LFLIP": "ShiftLeft", "RFLIP": "ShiftRight", "B1": "ShiftLeft", "B3": "ShiftRight",
+          "B2": "Space", "B5": "KeyT",
+          "PLUNGER": { "key": "Space", "mode": "hold" }, "LAUNCH": "Space",
+          "NUDGE_UP": "KeyT", "NUDGE_L": "KeyX", "NUDGE_R": "Period",
+          "START": "Enter", "COIN": "F2"
+        },
+        "hints": [["LFLIP", "Left flipper"], ["RFLIP", "Right flipper"], ["PLUNGER", "Pull and let go to launch"], ["NUDGE", "Bump the cabinet to tilt"], ["COIN", "New game"], ["START", "Play"]]
+      }
+    },
+    {
+      "id": "nanosaur",
+      "title": "Nanosaur",
+      "maker": "Pangea Software",
+      "year": 1998,
+      "genre": "Action",
+      "players": "1",
+      "tagline": "Save the eggs before the asteroid hits.",
+      "description": "Pangea's 1998 dino shooter, rebuilt for the web from Iliyas Jorio's modern source. Rescue every species' eggs, beam them home and keep an eye on the impact clock.",
+      "url": "",
+      "repo": "https://github.com/au12/nanosaur-mobile",
+      "theme": { "primary": "#e8762b", "secondary": "#7fc241", "accent": "#ffd23f", "bg": "#0d1a0c" },
+      "art": "art/nanosaur.svg",
+      "icon": "icons/nanosaur.png",
+      "orientation": "landscape",
+      "boards": [
+        { "id": "score", "name": "High Score", "kind": "best", "order": "desc", "format": "int", "primary": true }
+      ],
+      "tickets": [{ "board": "score", "per": 2000, "max": 60 }],
+      "achievements": [
+        { "id": "egg-hunter", "name": "Egg Hunter", "desc": "Score 10,000 on Nanosaur", "icon": "egg", "tickets": 15, "when": { "board": "score", "gte": 10000 } },
+        { "id": "extinction-averted", "name": "Extinction Averted", "desc": "Score 50,000 on Nanosaur", "icon": "dino", "tickets": 50, "when": { "board": "score", "gte": 50000 } }
+      ],
+      "keys": [["Arrows", "Move"], ["Alt / Option", "Jump"], ["Space", "Fire"], ["X", "Pick up / throw"]],
+      "cabinet": {
+        "stick": "keys",
+        "map": {
+          "UP": "ArrowUp", "DOWN": "ArrowDown", "LEFT": "ArrowLeft", "RIGHT": "ArrowRight",
+          "B1": "Space", "B2": "AltLeft", "B3": "KeyX", "B4": "ShiftLeft", "B5": "KeyA", "B6": "KeyZ",
+          "LFLIP": "Comma", "RFLIP": "Period",
+          "START": "Enter", "COIN": "Tab", "LAUNCH": "KeyG"
+        },
+        "hints": [["STICK", "Run"], ["B1", "Fire"], ["B2", "Jump"], ["B3", "Pick up / throw"], ["B4", "Change weapon"], ["B5", "Jetpack up"], ["B6", "Jetpack down"], ["COIN", "Camera"]]
+      }
+    },
+    {
+      "id": "marbledrop",
+      "title": "Marble Drop",
+      "maker": "Maxis",
+      "year": 1997,
+      "genre": "Puzzle",
+      "players": "1",
+      "tagline": "Fill every tube with the right colors.",
+      "description": "Maxis' marble-run puzzler, reimplemented in JavaScript from the original game logic. Drop marbles through switches, gates and lifts until every exit tube is filled correctly, using as few marbles as you can.",
+      "url": "",
+      "repo": "https://github.com/au12/marbledrop",
+      "theme": { "primary": "#c9a227", "secondary": "#3b86d6", "accent": "#d6463b", "bg": "#121a17" },
+      "art": "art/marbledrop.svg",
+      "icon": "icons/marbledrop.png",
+      "orientation": "landscape",
+      "boards": [
+        { "id": "total", "name": "Game Score", "kind": "best", "order": "desc", "format": "int", "primary": true },
+        { "id": "solved", "name": "Puzzles Solved", "kind": "best", "order": "desc", "format": "int", "of": 45 }
+      ],
+      "tickets": [{ "board": "puzzle", "per": 150, "max": 25 }],
+      "achievements": [
+        { "id": "apprentice", "name": "Apprentice", "desc": "Solve 10 Marble Drop puzzles", "icon": "marble", "tickets": 15, "when": { "board": "solved", "gte": 10 } },
+        { "id": "journeyman", "name": "Journeyman", "desc": "Solve 25 Marble Drop puzzles", "icon": "gear", "tickets": 30, "when": { "board": "solved", "gte": 25 } },
+        { "id": "maestro", "name": "Maestro Leonardo", "desc": "Solve every regular Marble Drop puzzle", "icon": "crown", "tickets": 100, "when": { "board": "solved", "gte": 45 } }
+      ],
+      "keys": [["Mouse / touch", "Drag marbles into funnels"], ["F5", "Reset puzzle"], ["+ / −", "Speed"]],
+      "cabinet": {
+        "stick": "mouse",
+        "map": {
+          "B1": "mouse:left", "B2": "mouse:right", "B3": "F5", "B4": "F3",
+          "LFLIP": "Minus", "RFLIP": "Equal",
+          "START": "Enter", "COIN": "F6"
+        },
+        "hints": [["STICK", "Move the pointer"], ["B1", "Grab / drop a marble"], ["B3", "Reset puzzle"], ["B4", "Pause"], ["LFLIP", "Slower"], ["RFLIP", "Faster"], ["COIN", "Pick a puzzle"]]
+      }
+    },
+    {
+      "id": "chalkfall",
+      "title": "Chalkfall",
+      "maker": "au12",
+      "year": 2026,
+      "genre": "Puzzle",
+      "players": "1",
+      "tagline": "Bring it down below the line. Don't touch the neighbours.",
+      "description": "A demolition puzzle on a living chalkboard. Place the charges, set the fuses and hit the plunger. Three stars on every site: clear it, do it under par, and nail the bonus goal.",
+      "url": "",
+      "repo": "https://github.com/au12/chalkfall",
+      "theme": { "primary": "#f1e9c6", "secondary": "#f2cd45", "accent": "#e2675b", "bg": "#163126" },
+      "art": "art/chalkfall.svg",
+      "icon": "icons/chalkfall.png",
+      "orientation": "any",
+      "boards": [
+        { "id": "stars", "name": "Stars", "kind": "best", "order": "desc", "format": "int", "of": 96, "primary": true },
+        { "id": "total", "name": "Demolition Score", "kind": "best", "order": "desc", "format": "int" }
+      ],
+      "tickets": [{ "board": "level", "per": 250, "max": 15 }],
+      "achievements": [
+        { "id": "foreman", "name": "Foreman", "desc": "Earn 24 stars in Chalkfall", "icon": "hardhat", "tickets": 20, "when": { "board": "stars", "gte": 24 } },
+        { "id": "site-boss", "name": "Site Boss", "desc": "Earn 48 stars in Chalkfall", "icon": "dynamite", "tickets": 40, "when": { "board": "stars", "gte": 48 } },
+        { "id": "legend", "name": "Demolition Legend", "desc": "Earn all 96 stars in Chalkfall", "icon": "crown", "tickets": 120, "when": { "board": "stars", "gte": 96 } }
+      ],
+      "keys": [["Drag", "Place charges"], ["Enter", "BOOM"], ["Backspace", "Undo"], ["R", "Restart"]],
+      "cabinet": {
+        "stick": "mouse",
+        "map": {
+          "B1": "mouse:left", "B2": "Enter", "B3": "Backspace", "B4": "KeyR",
+          "START": "Enter", "COIN": "Escape"
+        },
+        "hints": [["STICK", "Move the pointer"], ["B1", "Pick up / place a charge"], ["B2", "BOOM"], ["B3", "Undo"], ["B4", "Restart"]]
+      }
+    },
+    {
+      "id": "swipe",
+      "title": "Swipe",
+      "maker": "House rules",
+      "year": 2026,
+      "genre": "Cards",
+      "players": "2–24",
+      "multiplayer": true,
+      "tagline": "Equal or lower, every time. Tens swipe the pile.",
+      "description": "The family card game, live in the browser for two to twenty-four players. Shed your cards onto the pile, swipe it with a ten or four of a kind, and be first out. Everyone joins from their phone.",
+      "url": "",
+      "repo": "https://github.com/au12/swipe",
+      "theme": { "primary": "#d4313b", "secondary": "#2a5cb8", "accent": "#fffdf8", "bg": "#1a1312" },
+      "art": "art/swipe.svg",
+      "icon": "icons/swipe.png",
+      "orientation": "any",
+      "boards": [
+        { "id": "wins", "name": "Games Won", "kind": "wins", "primary": true },
+        { "id": "matches", "name": "Matches Won", "kind": "wins", "filter": { "match": true } }
+      ],
+      "tickets": [{ "outcome": "win", "amount": 15 }, { "outcome": "loss", "amount": 3 }, { "outcome": "win", "filter": { "match": true }, "amount": 25 }],
+      "achievements": [
+        { "id": "first-out", "name": "First Out", "desc": "Win a game of Swipe", "icon": "cards", "tickets": 10, "when": { "wins": 1 } },
+        { "id": "card-sharp", "name": "Card Sharp", "desc": "Win 10 games of Swipe", "icon": "spade", "tickets": 40, "when": { "wins": 10 } },
+        { "id": "match-champ", "name": "Match Champion", "desc": "Win a whole Swipe match", "icon": "trophy", "tickets": 30, "when": { "wins": 1, "filter": { "match": true } } }
+      ],
+      "keys": [["Tap", "Build a set"], ["Play button", "Play it"]],
+      "cabinet": {
+        "stick": "mouse",
+        "map": { "B1": "mouse:left", "B2": "mouse:right", "START": "Enter", "COIN": "Escape" },
+        "hints": [["STICK", "Move the pointer"], ["B1", "Tap / select"], ["INVITE", "Scan the QR code to join from your phone"]]
+      }
+    },
+    {
+      "id": "tradecraft",
+      "title": "Tradecraft",
+      "maker": "au12",
+      "year": 2025,
+      "genre": "Party",
+      "players": "4+",
+      "multiplayer": true,
+      "tagline": "One word. One number. Find your agents.",
+      "description": "A real-time word game of one-word clues for two to four teams. Spymasters give a clue and a number; operatives point, argue and reveal. Avoid the assassin.",
+      "url": "",
+      "repo": "https://github.com/au12/tradecraft",
+      "theme": { "primary": "#37c3c9", "secondary": "#e64b4b", "accent": "#f2e4c2", "bg": "#0c1a22" },
+      "art": "art/tradecraft.svg",
+      "icon": "icons/tradecraft.png",
+      "orientation": "any",
+      "boards": [
+        { "id": "wins", "name": "Rounds Won", "kind": "wins", "primary": true }
+      ],
+      "tickets": [{ "outcome": "win", "amount": 15 }, { "outcome": "loss", "amount": 3 }],
+      "achievements": [
+        { "id": "mission-accomplished", "name": "Mission Accomplished", "desc": "Win a round of Tradecraft", "icon": "spy", "tickets": 10, "when": { "wins": 1 } },
+        { "id": "spymaster-general", "name": "Spymaster General", "desc": "Win 10 rounds of Tradecraft", "icon": "crown", "tickets": 40, "when": { "wins": 10 } }
+      ],
+      "keys": [["Tap a card", "Point at it"], ["Reveal", "Commit the guess"]],
+      "cabinet": {
+        "stick": "mouse",
+        "map": { "B1": "mouse:left", "B2": "mouse:right", "START": "Enter", "COIN": "Escape" },
+        "hints": [["STICK", "Move the pointer"], ["B1", "Tap / select"], ["INVITE", "Scan the QR code to join from your phone"]]
+      }
+    },
+    {
+      "id": "pazaak",
+      "title": "Pazaak",
+      "maker": "Cantina rules",
+      "year": 2026,
+      "genre": "Cards",
+      "players": "1–2",
+      "multiplayer": true,
+      "tagline": "Play to twenty. Don't bust. First to three sets.",
+      "description": "The holotable card game from the Old Republic cantinas. Build a side deck, then beat a friend or one of three computer opponents: Tobb, Vessa and Oru-Kaan, who counts cards.",
+      "url": "",
+      "repo": "https://github.com/au12/pazaak",
+      "theme": { "primary": "#f0b43c", "secondary": "#3ea6ff", "accent": "#e35151", "bg": "#0f151c" },
+      "art": "art/pazaak.svg",
+      "icon": "icons/pazaak.png",
+      "orientation": "any",
+      "boards": [
+        { "id": "wins", "name": "Matches Won", "kind": "wins", "primary": true },
+        { "id": "bots", "name": "Computers Beaten", "kind": "wins", "filter": { "vs": "bot" } }
+      ],
+      "tickets": [{ "outcome": "win", "amount": 15 }, { "outcome": "loss", "amount": 3 }, { "outcome": "win", "filter": { "bot": "hard" }, "amount": 15 }],
+      "achievements": [
+        { "id": "beat-tobb", "name": "Dockside Hustled", "desc": "Beat Tobb at Pazaak", "icon": "cards", "tickets": 10, "when": { "wins": 1, "filter": { "bot": "easy" } } },
+        { "id": "beat-vessa", "name": "Cantina Regular", "desc": "Beat Vessa at Pazaak", "icon": "cards", "tickets": 20, "when": { "wins": 1, "filter": { "bot": "normal" } } },
+        { "id": "beat-oru-kaan", "name": "Shark Hunter", "desc": "Beat Oru-Kaan at Pazaak", "icon": "trophy", "tickets": 50, "when": { "wins": 1, "filter": { "bot": "hard" } } }
+      ],
+      "keys": [["Tap a card", "Play it"], ["End turn / Stand", "Buttons under your hand"]],
+      "cabinet": {
+        "stick": "mouse",
+        "map": { "B1": "mouse:left", "B2": "mouse:right", "START": "Enter", "COIN": "Escape" },
+        "hints": [["STICK", "Move the pointer"], ["B1", "Tap / select"], ["INVITE", "Scan the QR code to play a friend"]]
+      }
+    }
+  ]
+}

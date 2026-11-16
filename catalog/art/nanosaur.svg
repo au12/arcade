@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#241238"/>
+      <stop offset="0.5" stop-color="#7a2d3a"/>
+      <stop offset="0.82" stop-color="#e8762b"/>
+      <stop offset="1" stop-color="#ffc35a"/>
+    </linearGradient>
+    <linearGradient id="fire" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe7a0" stop-opacity="0"/>
+      <stop offset="0.7" stop-color="#ff8a24" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#fff2c2"/>
+    </linearGradient>
+    <radialGradient id="lava" cx="0.5" cy="0" r="1">
+      <stop offset="0" stop-color="#ffd23f"/>
+      <stop offset="0.5" stop-color="#ff5a1f"/>
+      <stop offset="1" stop-color="#ff5a1f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="egg" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="0.4" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect width="640" height="400" fill="url(#sky)"/>
+  <!-- the asteroid, coming in hot -->
+  <path d="M640 -10 L470 128 L496 150 Z" fill="url(#fire)"/>
+  <circle cx="478" cy="138" r="34" fill="#ff8a24" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="478" cy="138" r="20" fill="#5a3426" stroke="#ffd23f" stroke-width="4"/>
+  <circle cx="471" cy="132" r="5" fill="#3b2019"/><circle cx="486" cy="144" r="3" fill="#3b2019"/>
+  <!-- volcano -->
+  <ellipse cx="300" cy="196" rx="60" ry="30" fill="#ff5a1f" opacity="0.55" filter="url(#glow)"/>
+  <path d="M150 300 L262 200 Q300 186 338 200 L460 300 Z" fill="#3a1f2c"/>
+  <path d="M276 202 Q300 194 324 202 L312 232 L296 220 L284 246 Z" fill="url(#lava)"/>
+  <!-- far trees -->
+  <path d="M0 300 C40 262 70 284 110 262 C150 244 190 280 236 270 L236 300 Z" fill="#1d2e1a"/>
+  <path d="M410 300 C450 268 500 286 540 262 C580 248 610 270 640 262 L640 300 Z" fill="#1d2e1a"/>
+  <rect y="296" width="640" height="104" fill="#0d1a0c"/>
+  <!-- the raptor on the rock -->
+  <path d="M470 300 L540 300 L560 330 L452 330 Z" fill="#14100f"/>
+  <path d="M478 300 C486 270 506 262 520 262 C530 250 548 244 560 248 L572 252 L560 258 C552 258 546 262 544 270 C548 282 544 294 536 300 L528 300 L530 286 L518 300 L510 300 L516 284 C502 286 492 292 486 300 Z" fill="#14100f"/>
+  <path d="M478 300 C460 296 440 288 418 292" stroke="#14100f" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <circle cx="556" cy="252" r="2" fill="#ffd23f"/>
+  <!-- fronds -->
+  <g fill="#10230f">
+    <path d="M0 140 C60 150 104 176 132 220 C94 196 56 186 0 186 Z"/>
+    <path d="M0 210 C50 214 92 236 112 270 C80 252 42 248 0 252 Z"/>
+    <path d="M640 120 C590 134 548 164 526 210 C562 182 600 172 640 172 Z"/>
+    <path d="M30 400 C40 330 80 290 120 276 C96 316 84 354 86 400 Z"/>
+    <path d="M610 400 C602 336 570 300 534 288 C556 324 566 360 564 400 Z"/>
+  </g>
+  <!-- the nest and the eggs -->
+  <ellipse cx="320" cy="366" rx="120" ry="24" fill="#4a2f17"/>
+  <path d="M206 360 C240 382 400 382 434 360 M214 368 C260 388 380 388 426 368" stroke="#7a5428" stroke-width="5" fill="none"/>
+  <g stroke="#14100f" stroke-width="4">
+    <ellipse cx="268" cy="334" rx="30" ry="40" fill="#3ec1d3"/>
+    <ellipse cx="372" cy="334" rx="30" ry="40" fill="#e5402f"/>
+    <ellipse cx="320" cy="322" rx="34" ry="46" fill="#ffd23f"/>
+  </g>
+  <g fill="#14100f" opacity="0.35">
+    <circle cx="258" cy="320" r="5"/><circle cx="278" cy="346" r="4"/><circle cx="312" cy="300" r="5"/><circle cx="332" cy="330" r="6"/>
+    <circle cx="364" cy="316" r="4"/><circle cx="382" cy="350" r="5"/>
+  </g>
+  <ellipse cx="268" cy="334" rx="30" ry="40" fill="url(#egg)"/>
+  <ellipse cx="372" cy="334" rx="30" ry="40" fill="url(#egg)"/>
+  <ellipse cx="320" cy="322" rx="34" ry="46" fill="url(#egg)"/>
+</svg>

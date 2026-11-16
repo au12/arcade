@@ -1,0 +1,35 @@
+<!doctype html><html><body style="margin:0;background:transparent">
+<canvas id="c" width="512" height="512"></canvas>
+<script type="module">
+import { critterPixels } from '/web/src/lib/critter.js';
+const mode = new URLSearchParams(location.search).get('mode') || 'any';
+const c = document.getElementById('c'); const x = c.getContext('2d');
+const S = 512;
+// background: the cabinet's aubergine, rounded unless maskable
+const g = x.createRadialGradient(S*0.5,S*0.42,20,S*0.5,S*0.5,S*0.75);
+g.addColorStop(0,'#33213f'); g.addColorStop(1,'#140d18');
+x.fillStyle = g;
+if (mode === 'maskable') x.fillRect(0,0,S,S);
+else { x.beginPath(); x.roundRect(0,0,S,S,112); x.fill(); }
+// the mascot as plasma dots on a 16x22 grid, cropped to rows 3..21
+const px = critterPixels({ avatar:{body:0,ears:1,eyes:1,mouth:0,pattern:1,feet:1}, color:'#ff8a24' });
+const rows0 = 4, rows1 = 21, cols = 16, rowsN = rows1 - rows0 + 1;
+const safe = mode === 'maskable' ? 0.62 : 0.78;
+const pitch = (S*safe) / Math.max(cols, rowsN);
+const ox = (S - cols*pitch)/2, oy = (S - rowsN*pitch)/2 + pitch*0.2;
+const lum = (h)=>{const n=parseInt(h.slice(1),16);return (((n>>16)&255)*0.3+((n>>8)&255)*0.59+(n&255)*0.11)/255;};
+for (let gy=rows0; gy<=rows1; gy++) for (let gx=0; gx<cols; gx++) {
+  const col = px.get(`${gx},${gy}`);
+  const cx = ox + gx*pitch + pitch/2, cy = oy + (gy-rows0)*pitch + pitch/2;
+  if (!col) { x.fillStyle='rgba(255,138,36,0.07)'; x.beginPath(); x.arc(cx,cy,pitch*0.36,0,7); x.fill(); continue; }
+  const k = Math.max(0.25, Math.min(1, lum(col)*1.25 + (col==='#ffffff'?0.3:0)));
+  const halo = x.createRadialGradient(cx,cy,0,cx,cy,pitch*0.95);
+  halo.addColorStop(0,`rgba(255,138,36,${0.4*k})`); halo.addColorStop(1,'rgba(255,138,36,0)');
+  x.fillStyle=halo; x.fillRect(cx-pitch,cy-pitch,pitch*2,pitch*2);
+  const lift=(v)=>Math.round(v+(255-v)*0.6*k*k);
+  x.fillStyle = col==='#1a1220' ? 'rgba(60,24,6,0.9)' : `rgb(${lift(255)},${lift(138)},${lift(36)})`;
+  x.globalAlpha = col==='#1a1220' ? 1 : 0.35+0.65*k;
+  x.beginPath(); x.arc(cx,cy,pitch*0.4,0,7); x.fill(); x.globalAlpha=1;
+}
+document.body.dataset.done='1';
+</script></body></html>

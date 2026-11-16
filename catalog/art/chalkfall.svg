@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400">
+  <defs>
+    <radialGradient id="board" cx="0.5" cy="0.45" r="0.8">
+      <stop offset="0" stop-color="#2a5a45"/>
+      <stop offset="0.7" stop-color="#1b3d2f"/>
+      <stop offset="1" stop-color="#10261d"/>
+    </radialGradient>
+    <filter id="chalk" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="9"/>
+      <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="smudge" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <rect width="640" height="400" fill="url(#board)"/>
+  <ellipse cx="180" cy="120" rx="140" ry="40" fill="#ffffff" opacity="0.05" filter="url(#smudge)"/>
+  <ellipse cx="500" cy="300" rx="160" ry="50" fill="#ffffff" opacity="0.05" filter="url(#smudge)"/>
+  <g filter="url(#chalk)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- the neighbours, untouched -->
+    <g stroke="#e8e1c4" stroke-width="4" opacity="0.65">
+      <path d="M40 330 V210 H120 V330"/><path d="M60 230 h20 v20 h-20 z M90 230 h20 v20 h-20 z M60 270 h20 v20 h-20 z M90 270 h20 v20 h-20 z"/>
+      <path d="M528 330 V190 H608 V330"/><path d="M548 210 h20 v20 h-20 z M578 210 h20 v20 h-20 z M548 250 h20 v20 h-20 z M578 250 h20 v20 h-20 z"/>
+    </g>
+    <!-- the building, coming down -->
+    <g stroke="#f4eed6" stroke-width="6">
+      <path d="M200 330 L206 262 L330 270 L326 330"/>
+      <path d="M196 258 L338 266" stroke-width="7"/>
+      <path d="M220 252 L232 196 L356 226 L340 270"/>
+      <path d="M226 196 L370 230" stroke-width="7"/>
+      <path d="M262 186 L300 128 L404 186 L372 226"/>
+      <path d="M296 126 L410 190" stroke-width="7"/>
+    </g>
+    <!-- debris -->
+    <g stroke="#f4eed6" stroke-width="5">
+      <path d="M420 120 l26 -10 6 22 -26 8 z"/><path d="M180 180 l18 -14 12 18 -18 12 z"/><path d="M440 236 l20 4 -4 20 -20 -4 z"/>
+      <path d="M380 100 l12 -4 2 12 -12 4 z"/><path d="M150 236 l14 2 -2 14 -14 -2 z"/>
+    </g>
+    <!-- dust -->
+    <g stroke="#f4eed6" stroke-width="3" opacity="0.8">
+      <path d="M180 330 c-10 -20 10 -34 26 -24 c4 -22 34 -22 40 -2 c14 -16 40 -6 36 14 c18 -6 34 6 28 20"/>
+      <path d="M300 334 c-6 -18 16 -28 28 -16 c8 -18 34 -12 34 8 c14 -8 30 2 26 18"/>
+      <path d="M150 160 c-12 -8 -6 -26 10 -24 c2 -14 24 -16 28 -2"/>
+    </g>
+    <!-- the plunger box -->
+    <g stroke="#f2cd45" stroke-width="5">
+      <path d="M470 330 h50 v-34 h-50 z"/><path d="M495 296 v-26 M478 270 h34"/>
+      <path d="M470 312 c-30 6 -60 -4 -84 10"/>
+    </g>
+  </g>
+  <!-- the pass line -->
+  <path d="M20 300 H620" stroke="#e2675b" stroke-width="5" stroke-dasharray="18 12" filter="url(#chalk)" opacity="0.9"/>
+  <!-- the sparks -->
+  <g stroke="#f2cd45" stroke-width="4" stroke-linecap="round" filter="url(#chalk)">
+    <path d="M232 280 l-12 -14 M238 276 l2 -18 M244 280 l14 -12"/>
+    <path d="M300 210 l-10 -12 M306 206 l4 -16 M312 210 l14 -8"/>
+  </g>
+  <!-- ground -->
+  <path d="M20 334 H620" stroke="#f4eed6" stroke-width="5" filter="url(#chalk)"/>
+  <rect width="640" height="400" fill="#ffffff" opacity="0.05" filter="url(#grain)"/>
+</svg>

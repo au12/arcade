@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 640 400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a0f0a"/>
+      <stop offset="0.55" stop-color="#c8361c"/>
+      <stop offset="0.85" stop-color="#f08a24"/>
+      <stop offset="1" stop-color="#f6c443"/>
+    </linearGradient>
+    <radialGradient id="ball" cx="0.36" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.22" stop-color="#e9ecf3"/>
+      <stop offset="0.6" stop-color="#8a92a6"/>
+      <stop offset="1" stop-color="#2b2f3c"/>
+    </radialGradient>
+    <path id="ray" d="M0 0 L-34 -700 L34 -700 Z" fill="#ffd25e" opacity="0.18"/>
+  </defs>
+  <rect width="640" height="400" fill="url(#sky)"/>
+  <g transform="translate(320 300)">
+    <use href="#ray"/><use href="#ray" transform="rotate(20)"/><use href="#ray" transform="rotate(40)"/><use href="#ray" transform="rotate(60)"/>
+    <use href="#ray" transform="rotate(80)"/><use href="#ray" transform="rotate(-20)"/><use href="#ray" transform="rotate(-40)"/><use href="#ray" transform="rotate(-60)"/>
+    <use href="#ray" transform="rotate(-80)"/>
+  </g>
+  <circle cx="320" cy="300" r="120" fill="#ffd25e" opacity="0.35"/>
+  <circle cx="320" cy="300" r="78" fill="#ffe9a1" opacity="0.5"/>
+  <!-- mesas -->
+  <path d="M0 300 L60 300 L80 270 L160 270 L176 300 L250 300 L250 400 L0 400 Z" fill="#2a120c"/>
+  <path d="M400 300 L470 300 L486 262 L580 262 L600 300 L640 300 L640 400 L400 400 Z" fill="#2a120c"/>
+  <rect y="300" width="640" height="100" fill="#150d0b"/>
+  <!-- the pole -->
+  <g stroke="#150d0b" stroke-width="7" stroke-linejoin="round">
+    <!-- thunderbird -->
+    <path d="M118 96 L268 112 L268 146 L150 132 Z" fill="#e5402f"/>
+    <path d="M522 96 L372 112 L372 146 L490 132 Z" fill="#e5402f"/>
+    <path d="M150 100 L172 140 M190 104 L206 142 M228 108 L240 144" stroke-width="6"/>
+    <path d="M490 100 L468 140 M450 104 L434 142 M412 108 L400 144" stroke-width="6"/>
+    <rect x="266" y="58" width="108" height="92" rx="8" fill="#f4cf3f"/>
+    <rect x="284" y="78" width="22" height="16" fill="#2c56c8"/>
+    <rect x="334" y="78" width="22" height="16" fill="#2c56c8"/>
+    <path d="M300 104 L340 104 L320 140 Z" fill="#e5402f"/>
+    <!-- face two -->
+    <rect x="262" y="154" width="116" height="78" rx="6" fill="#2c56c8"/>
+    <circle cx="292" cy="186" r="15" fill="#f4cf3f"/>
+    <circle cx="348" cy="186" r="15" fill="#f4cf3f"/>
+    <circle cx="292" cy="186" r="5" fill="#150d0b" stroke="none"/>
+    <circle cx="348" cy="186" r="5" fill="#150d0b" stroke="none"/>
+    <rect x="296" y="210" width="48" height="10" rx="4" fill="#e5402f"/>
+    <!-- face three -->
+    <rect x="262" y="236" width="116" height="76" rx="6" fill="#e5402f"/>
+    <rect x="280" y="252" width="26" height="14" fill="#f4cf3f"/>
+    <rect x="334" y="252" width="26" height="14" fill="#f4cf3f"/>
+    <rect x="290" y="278" width="60" height="20" fill="#150d0b"/>
+    <path d="M300 279 V297 M312 279 V297 M324 279 V297 M336 279 V297" stroke="#f4cf3f" stroke-width="5"/>
+  </g>
+  <rect x="270" y="314" width="100" height="86" fill="#150d0b"/>
+  <!-- flippers and the ball -->
+  <g stroke="#150d0b" stroke-width="5" stroke-linejoin="round">
+    <path d="M150 360 Q144 346 158 344 L246 368 Q254 376 244 380 Z" fill="#f6f1e2"/>
+    <path d="M490 360 Q496 346 482 344 L394 368 Q386 376 396 380 Z" fill="#f6f1e2"/>
+  </g>
+  <g opacity="0.6" stroke="#ffe9a1" stroke-width="4" stroke-linecap="round">
+    <path d="M486 280 L548 252"/><path d="M492 300 L566 276"/><path d="M482 318 L540 300"/>
+  </g>
+  <circle cx="462" cy="304" r="27" fill="url(#ball)" stroke="#150d0b" stroke-width="4"/>
+  <g fill="#fff4c8">
+    <path d="M86 70 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z"/>
+    <path d="M560 52 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z"/>
+    <path d="M592 170 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z"/>
+  </g>
+</svg>

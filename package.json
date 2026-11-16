@@ -1,0 +1,18 @@
+{
+  "name": "au12-arcade",
+  "version": "1.0.0",
+  "description": "One installable arcade for a shelf of self-hosted browser games: shared players, cross-game high scores, tickets and a prize counter, an attract-mode kiosk for a real cabinet.",
+  "type": "module",
+  "main": "server/index.js",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "build": "npm --prefix web run build",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js"
+  }
+}

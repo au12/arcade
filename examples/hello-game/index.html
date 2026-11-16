@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Button Masher</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; min-height: 100vh; display: grid; place-content: center; justify-items: center; gap: 18px; background: #101828; color: #f5f7ff; font: 18px/1.4 system-ui, sans-serif; text-align: center; }
+  h1 { margin: 0; font-size: 44px; letter-spacing: 0.02em; }
+  #who { color: #9fb3d9; min-height: 1.4em; }
+  #score { font: 700 72px/1 ui-monospace, monospace; color: #ffd166; }
+  button { font: 700 22px system-ui; padding: 18px 34px; border-radius: 999px; border: 0; background: #ef476f; color: white; cursor: pointer; }
+  #verdict { min-height: 1.4em; color: #06d6a0; }
+</style>
+<!-- 1. Load the SDK (a copy kept next to the game, so it also works offline). -->
+<script src="arcade.js" data-game="hello"></script>
+</head>
+<body>
+  <h1>Button Masher</h1>
+  <p id="who"></p>
+  <p id="score">0</p>
+  <button id="go">Start</button>
+  <p id="verdict"></p>
+  <p style="color:#9fb3d9;font-size:15px">Press Space or tap as fast as you can for 10 seconds.</p>
+<script>
+  const $ = (id) => document.getElementById(id);
+  let score = 0, running = false;
+
+  // 2. Find out who's playing (null when the game runs on its own with no arcade).
+  Arcade.ready.then((player) => {
+    $('who').textContent = player ? `Playing as ${player.name}` : 'Not connected to an arcade';
+  });
+
+  function start() {
+    if (running) return;
+    running = true; score = 0; $('score').textContent = '0'; $('verdict').textContent = '';
+    Arcade.status('playing');
+    $('go').textContent = 'Mash!';
+    setTimeout(finish, 10000);
+  }
+  function hit() { if (running) { score += 100; $('score').textContent = score; } else start(); }
+
+  async function finish() {
+    running = false;
+    $('go').textContent = 'Again';
+    Arcade.status('over');
+    // 3. Report the finished game. The arcade answers with its verdict.
+    const v = await Arcade.score(score);
+    if (v) $('verdict').textContent = v.record ? 'New arcade record!' : v.personalBest ? 'Personal best!' : `Rank ${v.rank}, +${v.tickets.earned} tickets`;
+  }
+
+  // 4. Pause when the arcade opens its menu.
+  Arcade.on('pause', () => { running = false; });
+
+  $('go').addEventListener('click', hit);
+  addEventListener('keydown', (e) => { if (e.code === 'Space') { e.preventDefault(); hit(); } });
+</script>
+</body>
+</html>
