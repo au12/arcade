@@ -214,7 +214,7 @@ static int muteQueue = 0;
 static bool consumerDown = false;
 static uint32_t lastMouseAt = 0;
 
-static bool samePad(const PadReport& a, const PadReport& b) {
+static bool samePad(const arcade::PadReport& a, const arcade::PadReport& b) {
   return a.x == b.x && a.y == b.y && a.z == b.z && a.rx == b.rx && a.ry == b.ry && a.buttons == b.buttons;
 }
 
